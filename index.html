@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Strength The Gym & Spa - Largest and best gym in West Delhi. Offering premium fitness facilities, spa services, online classes, and expert trainers.">
-    <meta name="keywords" content="gym, fitness, spa, West Delhi, Tilak Nagar, personal training, online classes, weight loss, bodybuilding">
+    <meta name="description"
+        content="Strength The Gym & Spa - Largest and best gym in West Delhi. Offering premium fitness facilities, spa services, online classes, and expert trainers.">
+    <meta name="keywords"
+        content="gym, fitness, spa, West Delhi, Tilak Nagar, personal training, online classes, weight loss, bodybuilding">
     <meta name="author" content="Strength The Gym & Spa">
     <title>Strength The Gym & Spa - Largest & Best Gym in West Delhi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -337,53 +340,95 @@
             text-align: center;
         }
 
-        /* Trainers Section */
-        .trainers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .trainer-card {
+        /* Gallery Section */
+        .gallery {
             background-color: var(--card-bg);
+        }
+
+        .gallery-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: var(--transition);
+            box-shadow: 0 10px 30px var(--shadow);
         }
 
-        .trainer-card:hover {
-            transform: translateY(-10px);
+        .gallery-slides {
+            display: flex;
+            transition: transform 0.5s ease;
         }
 
-        .trainer-img {
-            height: 300px;
-            overflow: hidden;
+        .gallery-slide {
+            min-width: 100%;
+            position: relative;
         }
 
-        .trainer-img img {
+        .gallery-slide img {
             width: 100%;
-            height: 100%;
+            height: 500px;
             object-fit: cover;
-            transition: var(--transition);
+            display: block;
         }
 
-        .trainer-card:hover .trainer-img img {
-            transform: scale(1.1);
-        }
-
-        .trainer-info {
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
             padding: 20px;
             text-align: center;
         }
 
-        .trainer-info h3 {
-            margin-bottom: 5px;
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .trainer-info p {
-            color: var(--primary-color);
-            font-weight: 500;
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .gallery-prev,
+        .gallery-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .gallery-prev:hover,
+        .gallery-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-prev {
+            left: 10px;
+        }
+
+        .gallery-next {
+            right: 10px;
         }
 
         /* Reviews Section */
@@ -617,18 +662,61 @@
             resize: vertical;
         }
 
-        /* Map Section */
-        .map-container {
-            margin-top: 50px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px var(--shadow);
+        /* Locations Section */
+        .locations {
+            background-color: var(--card-bg);
         }
 
-        .map-container iframe {
+        .locations-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .location-card {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: var(--transition);
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .location-map {
+            height: 300px;
+        }
+
+        .location-map iframe {
             width: 100%;
-            height: 400px;
+            height: 100%;
             border: 0;
+        }
+
+        .location-info {
+            padding: 20px;
+        }
+
+        .location-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .location-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .location-info i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            margin-top: 3px;
+            width: 20px;
         }
 
         /* Footer */
@@ -721,24 +809,45 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .about-content, .contact-container {
+
+            .about-content,
+            .contact-container {
                 flex-direction: column;
             }
-            
+
             .hero h1 {
                 font-size: 2.8rem;
+            }
+
+            .locations-container {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -776,39 +885,57 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+
+            .gallery-slide img {
+                height: 350px;
+            }
+
+            .locations-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
             .hero h1 {
                 font-size: 1.8rem;
             }
-            
+
             .hero p {
                 font-size: 1rem;
             }
-            
+
             .btn {
                 padding: 10px 20px;
+            }
+
+            .gallery-slide img {
+                height: 250px;
+            }
+
+            .gallery-caption {
+                padding: 10px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
+
 <body class="dark-theme">
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo"><i class="fas fa-dumbbell"></i> Strength The Gym</a>
-            
+            <a href="#" class="logo"><i class="fas fa-dumbbell"></i> Strength The Gyms</a>
+
             <div class="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
-            
+
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#facilities">Facilities</a></li>
-                <li><a href="#trainers">Trainers</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#membership">Membership</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -824,8 +951,9 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <h1>Largest & Best Gym in West Delhi</h1>
-            <p>Transform your body and mind at Strength The Gym & Spa. Experience premium fitness facilities, expert trainers, and rejuvenating spa services.</p>
+            <h1>Largest & Best Gyms in West Delhi</h1>
+            <p>Transform your body and mind at Strength The Gyms. Experience premium fitness facilities, expert
+                trainers, and rejuvenating spa services.</p>
             <a href="#membership" class="btn">Join Now</a>
             <div class="rating-badge">
                 <i class="fas fa-star"></i>
@@ -841,12 +969,15 @@
                 <h2>About Us</h2>
                 <p>West Delhi's Premier Fitness Destination</p>
             </div>
-            
+
             <div class="about-content">
                 <div class="about-text">
                     <h3>Your Journey to Fitness Starts Here</h3>
-                    <p>Strength The Gym & Spa is the largest and most well-equipped fitness center in West Delhi. With state-of-the-art equipment, certified trainers, and a comprehensive range of services, we're dedicated to helping you achieve your fitness goals.</p>
-                    <p>Our facility spans over 10,000 sq. ft. and includes a fully-equipped gym, dedicated functional training area, group exercise studio, and a luxurious spa for post-workout recovery.</p>
+                    <p>Strength The Gyms is the largest and most well-equipped fitness center in West Delhi. With
+                        state-of-the-art equipment, certified trainers, and a comprehensive range of services, we're
+                        dedicated to helping you achieve your fitness goals.</p>
+                    <p>Our facility spans over 3000 sq. ft. and includes a fully-equipped gym, dedicated functional
+                        training area, group exercise studio, and a luxurious spa for post-workout recovery.</p>
                     <div class="facilities-container">
                         <div class="facility-item">
                             <div class="facility-icon"><i class="fas fa-wifi"></i></div>
@@ -860,10 +991,15 @@
                             <div class="facility-icon"><i class="fas fa-shower"></i></div>
                             <div>Restroom & Shower</div>
                         </div>
+                        <div class="facility-item">
+                            <div class="facility-icon"><i class="fas fa-lock"></i></div>
+                            <div>Free Locker</div>
+                        </div>
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Strength The Gym & Spa Interior">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                        alt="Strength The Gym & Spa Interior">
                 </div>
             </div>
         </div>
@@ -876,54 +1012,51 @@
                 <h2>Our Services</h2>
                 <p>Comprehensive fitness and wellness solutions</p>
             </div>
-            
+
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-dumbbell"></i>
                     </div>
                     <h3>Strength Training</h3>
-                    <p>Build muscle and increase strength with our comprehensive strength training programs and premium equipment.</p>
+                    <p>Build muscle and increase strength with our comprehensive strength training programs and premium
+                        equipment.</p>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-running"></i>
                     </div>
                     <h3>Cardio Workouts</h3>
-                    <p>Improve your cardiovascular health with our state-of-the-art cardio equipment and guided sessions.</p>
+                    <p>Improve your cardiovascular health with our state-of-the-art cardio equipment and guided
+                        sessions.</p>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-laptop"></i>
                     </div>
                     <h3>Online Classes</h3>
-                    <p>Join our live online classes from the comfort of your home with expert trainers guiding you every step.</p>
+                    <p>Join our live online classes from the comfort of your home with expert trainers guiding you every
+                        step.</p>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-spa"></i>
-                    </div>
-                    <h3>Spa Services</h3>
-                    <p>Rejuvenate your body and mind with our premium spa services including massage therapy and steam rooms.</p>
-                </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-user-md"></i>
                     </div>
                     <h3>Personal Training</h3>
-                    <p>Work one-on-one with our expert trainers to achieve your specific fitness goals faster and safer.</p>
+                    <p>Work one-on-one with our expert trainers to achieve your specific fitness goals faster and safer.
+                    </p>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Group Classes</h3>
-                    <p>Join our energetic group classes including yoga, Zumba, spinning, and high-intensity interval training.</p>
+                    <p>Join our energetic group classes including yoga, Zumba, spinning, CrossFit, Boxing and
+                        high-intensity interval training.</p>
                 </div>
             </div>
         </div>
@@ -936,7 +1069,7 @@
                 <h2>Our Facilities</h2>
                 <p>Premium amenities for your comfort</p>
             </div>
-            
+
             <div class="facilities-container">
                 <div class="facility-item">
                     <div class="facility-icon"><i class="fas fa-wifi"></i></div>
@@ -974,54 +1107,67 @@
         </div>
     </section>
 
-    <!-- Trainers Section -->
-    <section class="trainers" id="trainers">
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
         <div class="container">
             <div class="section-title">
-                <h2>Our Trainers</h2>
-                <p>Meet our certified fitness experts</p>
+                <h2>Our Gallery</h2>
+                <p>Take a tour of our premium facilities</p>
             </div>
-            
-            <div class="trainers-grid">
-                <div class="trainer-card">
-                    <div class="trainer-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Trainer John">
+
+            <div class="gallery-container">
+                <div class="gallery-slides">
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="Gym Interior">
+                        <div class="gallery-caption">
+                            <h3>Premium Gym Equipment</h3>
+                        </div>
                     </div>
-                    <div class="trainer-info">
-                        <h3>Rajesh Kumar</h3>
-                        <p>Strength & Conditioning</p>
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="Personal Training">
+                        <div class="gallery-caption">
+                            <h3>Expert Personal Training</h3>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="trainer-card">
-                    <div class="trainer-img">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1220&q=80" alt="Trainer Sarah">
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1220&q=80"
+                            alt="Group Classes">
+                        <div class="gallery-caption">
+                            <h3>Energetic Group Classes</h3>
+                        </div>
                     </div>
-                    <div class="trainer-info">
-                        <h3>Priya Sharma</h3>
-                        <p>Yoga & Pilates</p>
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                            alt="Cardio Zone">
+                        <div class="gallery-caption">
+                            <h3>State-of-the-art Cardio Zone</h3>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="trainer-card">
-                    <div class="trainer-img">
-                        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Trainer Mike">
-                    </div>
-                    <div class="trainer-info">
-                        <h3>Amit Singh</h3>
-                        <p>CrossFit & HIIT</p>
-                    </div>
-                </div>
-                
-                <div class="trainer-card">
-                    <div class="trainer-img">
-                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Trainer Emily">
-                    </div>
-                    <div class="trainer-info">
-                        <h3>Neha Gupta</h3>
-                        <p>Nutrition & Wellness</p>
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="Functional Training">
+                        <div class="gallery-caption">
+                            <h3>Functional Training Area</h3>
+                        </div>
                     </div>
                 </div>
+
+                <button class="gallery-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="gallery-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="gallery-nav">
+                <div class="gallery-dot active" data-index="0"></div>
+                <div class="gallery-dot" data-index="1"></div>
+                <div class="gallery-dot" data-index="2"></div>
+                <div class="gallery-dot" data-index="3"></div>
+                <div class="gallery-dot" data-index="4"></div>
             </div>
         </div>
     </section>
@@ -1033,54 +1179,68 @@
                 <h2>Client Reviews</h2>
                 <p>What our members say about us</p>
             </div>
-            
+
             <div class="reviews-container">
                 <div class="review-card active">
                     <div class="review-text">
-                        I've been a member at Strength The Gym for over a year now, and the results have been incredible. The trainers are knowledgeable and supportive, and the community is amazing. I've lost 15 kg and gained so much confidence!
+                        Best gym in our locality with good trainors Fitness With Sayed sir nd Nitin sir offers an
+                        excellent experience. clean and well-maintained facilities. The trainers are knowledgeable and
+                        offer extensive options for cardio workouts, catering to all fitness levels. They have separate
+                        space for cardio. It`s the perfect place to achieve your fitness goals😊💪🏻🤘🏻
                     </div>
                     <div class="reviewer">
                         <div class="reviewer-img">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul M.">
+                            <img src="/images/review1.png" alt="minash Rajput">
                         </div>
                         <div class="reviewer-info">
-                            <h4>Rahul M.</h4>
-                            <p>Member for 1 year</p>
+                            <h4>minash Rajput</h4>
+                            <p>7 months ago</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="review-card">
                     <div class="review-text">
-                        The facilities are top-notch and always clean. I particularly love the variety of classes offered. The morning yoga sessions have completely transformed my flexibility and reduced my back pain significantly.
+                        Joined this gym around 2 weeks back and it has been a great experience
+                        - The gym has all the necessary equipment for a great workout.
+                        - It has the largest area compared to other gyms in the neighborhood.
+                        - All the facilities offered by high-charging gyms are available here at a reasonable price.
+                        - The gym has excellent facilities specifically for girls.
+                        - Multiple Trainers are available at all times to assist with workouts.
+                        - Separate zones for Zumba and dance classes.
+                        - Privacy is well-maintained, ensuring a comfortable environment for everyone
+                        Enough weight and benches weights and machines are there to bear the rush of peak hours
+                        If you are planning to join hope this review helps
                     </div>
                     <div class="reviewer">
                         <div class="reviewer-img">
-                            <img src="https://randomuser.me/api/portraits/women/54.jpg" alt="Priya T.">
+                            <img src="/images/review2.png" alt="Sumit Ahar">
                         </div>
                         <div class="reviewer-info">
-                            <h4>Priya T.</h4>
-                            <p>Member for 8 months</p>
+                            <h4>Sumit Ahar</h4>
+                            <p>8 months ago</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="review-card">
                     <div class="review-text">
-                        As someone who was completely new to fitness, I was nervous about joining a gym. But the staff at Strength made me feel welcome from day one. My personal trainer has been patient and encouraging throughout my journey.
+                        As someone who was completely new to fitness, I was nervous about joining a gym. But the staff
+                        at Strength made me feel welcome from day one. My personal trainer has been patient and
+                        encouraging throughout my journey.
                     </div>
                     <div class="reviewer">
                         <div class="reviewer-img">
-                            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Vikram R.">
+                            <img src="images/review3.png" alt="Priyanshi Thukral">
                         </div>
                         <div class="reviewer-info">
-                            <h4>Vikram R.</h4>
-                            <p>Member for 6 months</p>
+                            <h4>Priyanshi Thukral</h4>
+                            <p>a month ago</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="review-nav">
                 <div class="review-dot active" data-index="0"></div>
                 <div class="review-dot" data-index="1"></div>
@@ -1096,12 +1256,12 @@
                 <h2>Membership Plans</h2>
                 <p>Choose the plan that fits your goals</p>
             </div>
-            
+
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Basic</h3>
-                        <div class="price">₹1,499<span>/month</span></div>
+                        <div class="price">₹1,799<span>/month</span></div>
                     </div>
                     <ul class="pricing-features">
                         <li>Access to gym facilities</li>
@@ -1112,7 +1272,7 @@
                     </ul>
                     <a href="tel:09968681007" class="btn">Enquire Now</a>
                 </div>
-                
+
                 <div class="pricing-card featured">
                     <div class="pricing-header">
                         <h3>Premium</h3>
@@ -1121,17 +1281,17 @@
                     <ul class="pricing-features">
                         <li>All Basic features</li>
                         <li>Unlimited group classes</li>
-                        <li>Access to spa facilities</li>
                         <li>2 personal training sessions</li>
                         <li>Nutrition consultation</li>
+                        <li>--</li>
                     </ul>
                     <a href="tel:09968681007" class="btn">Enquire Now</a>
                 </div>
-                
+
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Elite</h3>
-                        <div class="price">₹3,999<span>/month</span></div>
+                        <div class="price">₹7,499<span>/month</span></div>
                     </div>
                     <ul class="pricing-features">
                         <li>All Premium features</li>
@@ -1146,6 +1306,52 @@
         </div>
     </section>
 
+    <!-- Locations Section -->
+    <section class="locations" id="locations">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Locations</h2>
+                <p>Visit us at any of our premium locations</p>
+            </div>
+
+            <div class="locations-container">
+                <div class="location-card">
+                    <div class="location-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.366530833668!2d77.0869497752686!3d28.63716617567283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04979c6dd72f%3A0xfad97028fdc77cf9!2sStrength%20The%20Gym%20%26%20Spa-Largest%20n%20Best%20Gym%20in%20West%20Delhi!5e0!3m2!1sen!2sin!4v1699284434569!5m2!1sen!2sin"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="location-info">
+                        <h3>Tilak Nagar Branch</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Opposite HDFC Bank, Ganesh Nagar, Tilak Nagar, New
+                            Delhi, Delhi, 110018</p>
+                        <p><i class="fas fa-phone-alt"></i> <a href="tel:09968681007"
+                                style="color: var(--text-color); text-decoration: none;">09968681007</a></p>
+                        <p><i class="fas fa-clock"></i> Monday - Saturday: 5:30 AM - 11:30 PM</p>
+                        <p><i class="fas fa-clock"></i> Sunday: 7:00 AM - 12:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.596147684687!2d77.07021237526926!3d28.619501875678597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04cf4000c21d%3A0x74c97e22ecb1960d!2sSTRENGTH%20THE%20GYM%20%26%20AEROBICS%20-BEST%20n%20LARGEST%20GYM%20of%20Uttam%20Nagar!5e0!3m2!1sen!2sin!4v1699284634569!5m2!1sen!2sin"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="location-info">
+                        <h3>Uttam Nagar Branch</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> C- 1,2, Som Bazar Road, Pankha Rd, Jivan Park, Uttam
+                            Nagar New, New Delhi, Delhi 110059</p>
+                        <p><i class="fas fa-phone-alt"></i> <a href="tel:09968681007"
+                                style="color: var(--text-color); text-decoration: none;">09968681007</a></p>
+                        <p><i class="fas fa-clock"></i> Monday - Saturday: 5:30 AM - 11:30 PM</p>
+                        <p><i class="fas fa-clock"></i> Sunday: 7:00 AM - 12:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
@@ -1153,7 +1359,7 @@
                 <h2>Contact Us</h2>
                 <p>Get in touch with our team</p>
             </div>
-            
+
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="info-item">
@@ -1161,21 +1367,23 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="info-content">
-                            <h3>Our Location</h3>
-                            <p>Opposite HDFC Bank, Ganesh Nagar, Tilak Nagar, New Delhi, Delhi, 110018</p>
+                            <h3>Our Locations</h3>
+                            <p>We have two convenient locations in West Delhi to serve you better. Visit us at Tilak
+                                Nagar or Uttam Nagar.</p>
                         </div>
                     </div>
-                    
+
                     <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-phone-alt"></i>
                         </div>
                         <div class="info-content">
                             <h3>Phone Number</h3>
-                            <p><a href="tel:09968681007" style="color: var(--text-color); text-decoration: none;">09968681007</a></p>
+                            <p><a href="tel:09968681007"
+                                    style="color: var(--text-color); text-decoration: none;">09968681007</a></p>
                         </div>
                     </div>
-                    
+
                     <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-clock"></i>
@@ -1186,7 +1394,7 @@
                             <p>Sunday: 7:00 AM - 12:00 PM</p>
                         </div>
                     </div>
-                    
+
                     <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-star"></i>
@@ -1197,31 +1405,40 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/myznqwjr" method="POST">
                         <div class="form-group">
                             <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name"
+                                required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="phone">Your Phone</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                            <input type="tel" id="phone" name="phone" class="form-control"
+                                placeholder="Enter your phone number" required>
                         </div>
-                        
+
+                        <div class="form-group">
+                            <label for="location">Preferred Location</label>
+                            <select id="location" name="location" class="form-control" required>
+                                <option value="">Select a location</option>
+                                <option value="Tilak Nagar Branch">Tilak Nagar Branch</option>
+                                <option value="Uttam Nagar Branch">Uttam Nagar Branch</option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" placeholder="Enter your message" required></textarea>
+                            <textarea id="message" name="message" class="form-control" placeholder="Enter your message"
+                                required></textarea>
                         </div>
-                        
+
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
-            </div>
-            
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.366530833668!2d77.0869497752686!3d28.63716617567283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04979c6dd72f%3A0xfad97028fdc77cf9!2sStrength%20The%20Gym%20%26%20Spa-Largest%20n%20Best%20Gym%20in%20West%20Delhi!5e0!3m2!1sen!2sin!4v1699284434569!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
             </div>
         </div>
     </section>
@@ -1232,15 +1449,17 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <h3>Strength The Gym & Spa</h3>
-                    <p>Largest and best gym in West Delhi. Transform your body, transform your life. Join our fitness community today and achieve your health goals with expert guidance.</p>
+                    <p>Largest and best gym in West Delhi. Transform your body, transform your life. Join our fitness
+                        community today and achieve your health goals with expert guidance.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/strength.thegym" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/strength.thegym" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
                         <a href="#"><i class="fab fa-google"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
@@ -1248,10 +1467,12 @@
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#membership">Membership</a></li>
+                        <li><a href="#locations">Locations</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-col">
                     <h3>Services</h3>
                     <ul>
@@ -1259,22 +1480,28 @@
                         <li><a href="#">Group Classes</a></li>
                         <li><a href="#">Strength Training</a></li>
                         <li><a href="#">Cardio Workouts</a></li>
-                        <li><a href="#">Spa Services</a></li>
+                        <li><a href="#">Online Classes</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-col">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Opposite HDFC Bank, Ganesh Nagar, Tilak Nagar, Delhi 110018</li>
-                        <li><i class="fas fa-phone-alt"></i> <a href="tel:09968681007" style="color: #ddd; text-decoration: none;">09968681007</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Tilak Nagar: Opposite HDFC Bank, Ganesh Nagar, Tilak
+                            Nagar, Delhi 110018</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Uttam Nagar: C-1,2, Som Bazar Road, Pankha Rd, Jivan
+                            Park, Uttam Nagar New, Delhi 110059</li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:09968681007"
+                                style="color: #ddd; text-decoration: none;">09968681007</a></li>
                         <li><i class="fas fa-clock"></i> Mon-Sat: 5:30-23:30, Sun: 7:00-12:00</li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="copyright">
-                <p>&copy; 2023 Strength The Gym & Spa. All Rights Reserved. | Developed by <span class="developer-credit"><a href="https://developer-rs.zenuxshost.fun" target="_blank">Developer RS</a></span></p>
+                <p>&copy; 2025 Strength The Gym & Spa. All Rights Reserved. | Developed by <span
+                        class="developer-credit"><a href="https://developer-rs.zenuxshost.fun" target="_blank">Developer
+                            RS</a></span></p>
             </div>
         </div>
     </footer>
@@ -1283,16 +1510,16 @@
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
-        
+
         // Set default to dark theme
         document.body.classList.add('dark-theme');
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
-        
+
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
             document.body.classList.toggle('light-theme');
-            
+
             if (document.body.classList.contains('light-theme')) {
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
@@ -1303,7 +1530,7 @@
                 localStorage.setItem('theme', 'dark');
             }
         });
-        
+
         // Check for saved theme preference
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-theme');
@@ -1311,17 +1538,17 @@
             themeIcon.classList.remove('fa-sun');
             themeIcon.classList.add('fa-moon');
         }
-        
+
         // Mobile Menu Toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-        
+
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenu.querySelector('i').classList.toggle('fa-bars');
             mobileMenu.querySelector('i').classList.toggle('fa-times');
         });
-        
+
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
@@ -1330,44 +1557,98 @@
                 mobileMenu.querySelector('i').classList.remove('fa-times');
             });
         });
-        
+
+        // Gallery Slider
+        const gallerySlides = document.querySelector('.gallery-slides');
+        const gallerySlideItems = document.querySelectorAll('.gallery-slide');
+        const galleryDots = document.querySelectorAll('.gallery-dot');
+        const galleryPrev = document.querySelector('.gallery-prev');
+        const galleryNext = document.querySelector('.gallery-next');
+        let currentGallerySlide = 0;
+        let galleryInterval;
+
+        function showGallerySlide(index) {
+            gallerySlides.style.transform = `translateX(-${index * 100}%)`;
+            galleryDots.forEach(dot => dot.classList.remove('active'));
+            galleryDots[index].classList.add('active');
+            currentGallerySlide = index;
+        }
+
+        function nextGallerySlide() {
+            currentGallerySlide = (currentGallerySlide + 1) % gallerySlideItems.length;
+            showGallerySlide(currentGallerySlide);
+        }
+
+        function prevGallerySlide() {
+            currentGallerySlide = (currentGallerySlide - 1 + gallerySlideItems.length) % gallerySlideItems.length;
+            showGallerySlide(currentGallerySlide);
+        }
+
+        galleryDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                showGallerySlide(index);
+                resetGalleryInterval();
+            });
+        });
+
+        galleryPrev.addEventListener('click', () => {
+            prevGallerySlide();
+            resetGalleryInterval();
+        });
+
+        galleryNext.addEventListener('click', () => {
+            nextGallerySlide();
+            resetGalleryInterval();
+        });
+
+        function startGalleryInterval() {
+            galleryInterval = setInterval(nextGallerySlide, 5000);
+        }
+
+        function resetGalleryInterval() {
+            clearInterval(galleryInterval);
+            startGalleryInterval();
+        }
+
+        startGalleryInterval();
+
         // Reviews Slider
         const reviewCards = document.querySelectorAll('.review-card');
         const reviewDots = document.querySelectorAll('.review-dot');
         let currentReview = 0;
-        
+
         function showReview(index) {
             reviewCards.forEach(card => card.classList.remove('active'));
             reviewDots.forEach(dot => dot.classList.remove('active'));
-            
+
             reviewCards[index].classList.add('active');
             reviewDots[index].classList.add('active');
             currentReview = index;
         }
-        
+
         reviewDots.forEach(dot => {
             dot.addEventListener('click', () => {
                 const index = parseInt(dot.getAttribute('data-index'));
                 showReview(index);
             });
         });
-        
+
         // Auto-rotate reviews
         setInterval(() => {
             currentReview = (currentReview + 1) % reviewCards.length;
             showReview(currentReview);
         }, 5000);
-        
-        // Form Submission
+
         const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
-        });
-        
-        // Header scroll effect
+
+        // contactForm.addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     alert('Thank you for your message! We will get back to you soon.');
+        //     contactForm.reset();
+        // });
+
+
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
@@ -1380,4 +1661,5 @@
         });
     </script>
 </body>
+
 </html>
